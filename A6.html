@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<!--
+            Andrew Pel
+            andrew_pel@student.uml.edu
+            Student @ UMass Lowell in 91.461 GUI Programming I
+            10/20/2015
+            This webpage is assignment 6 
+            I used 3 different javascript functions for this assignment
+            I used one to get and store data from the form
+            I used another one to make a table with the data
+            And lastly I had a java script that resets the whole page
+-->
+<html>
+    <head>
+        <title>Assignment 6</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/css.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!--Using Google as CDN for jQuery -->
+        
+    </head>
+    
+    <body>
+        
+        <h1 class = "ex">Dynamic Multiplication Table</h1>
+        
+        <ul>
+        <li><a href="http://weblab.cs.uml.edu/~apel/">Home</a></li>
+        </ul>
+        
+        
+        <!-- 
+        underneath this is the html code to create a form that takes 4 different information
+        I labled the form as user_input
+        I also set the type of each input so that it only accepts numbers
+        -->
+        <form id="user_input" method="get">
+            <br>
+            Starting number for horizontal (multiplier): <br>
+            <input type="number" name="sRow" id="sRow">
+            <br>
+            Ending number for horizontal (multiplier): <br>
+            <input type="number" name="eRow" id="eRow">
+            <br>
+            Starting number for vertical (multiplicand): <br>
+            <input type="number" name="sCol" id="sCol">
+            <br>
+            Ending number for vertical (multiplicand): <br>
+            <input type="number" name="eCol" id="eCol">
+            <br><br>
+        </form>
+        
+        <!-- 
+        This button calls the getValues() function which stores the form data and creates the table
+        -->
+        <button onclick="getValues()">Submit</button> 
+        <!-- 
+        This button calls the resetF() function which resets the page so we can set different parameters
+        -->
+        <button onclick="resetF()">Reset</button> <br> <br>
+        
+        <label>Your created multiplication table: </label> <br>
+     
+        <!-- 
+        javascript function that gets the values from the form and stores it into variables,
+        checks if the values entered are valid inputs,
+        and calls the make table function with the variables
+        -->
+        <script type="text/javascript">
+            function getValues(){
+                   // code to store formdata into variables
+                   rS = document.getElementById("user_input").elements[0].value;
+                   rE = document.getElementById("user_input").elements[1].value;
+                   cS = document.getElementById("user_input").elements[2].value;
+                   cE = document.getElementById("user_input").elements[3].value;
+                   // Checks if the starts are larger than the ends and if so 
+                   // puts out an alert and restarts the page
+                   if (rS > rE || cS > cE){
+                       alert("The starting values have to bigger than the ending values!");
+                       location.reload();
+                   } else 
+                       // Checks if inputted values are negative and if so 
+                       // puts out an alert and restarts the page
+                       if (rS < 0 || rE < 0 || cS < 0 || cE < 0 ){
+                       alert("Please input a positive number!");
+                       location.reload();
+                   } else
+                       // Checks if there are no inputted values and if so 
+                       // puts out an alert and restarts the page
+                       if (rS === null || rE === null || cS === null || cE === null ){
+                       alert("Please fill in the forms completely");
+                       location.reload();
+                   } else{
+                   // if all ifs are false call the makeTable function with the variables
+                   makeTable(rS, rE, cS, cE);
+                   }
+            }
+        </script>
+        
+        <!-- 
+        javascript function to to create the multiplication table
+        -->
+        <script type="text/javascript">
+            function makeTable(){
+                
+                // creating the table element
+                table = document.createElement('table');
+                  
+                // variable for number of rows and number of coloums  
+                var numRow = ++rE;
+                var numCol = ++cE;
+                
+                // declaring tr to insert new rows into the table
+                var tr = table.insertRow();
+                // declaring td to create new cells inside each rows
+                var td = tr.insertCell();
+                // placing X into first cell of the table as a place holder
+                td.innerHTML = "X";
+                // for loop to create the first coloum of numbers
+                for (var x = cS; x < numCol; x++){
+                    td = tr.insertCell();
+                    td.innerHTML= x;
+                }
+                // making a new row
+                tr = table.insertRow();
+                
+                // two nested for loops to create the inner components 
+                // of the table and multiply the numbers together
+                for (var i = rS; i < numRow; i++){
+                    // create next row of numbers
+                    td = tr.insertCell();
+                    td.innerHTML= i;
+                    for (var j = cS; j < numCol; j++){
+                         // puts the remaining cells into the table and insert
+                         // the multiplcation value into them
+                         td = tr.insertCell();
+                         td.appendChild(document.createTextNode(i * j));
+                    }
+                    // creates another row the next set of ints
+                    tr = table.insertRow();
+                    
+                }
+                document.body.appendChild(table);
+            }
+        </script>
+        
+        <!-- 
+        javascript function to reset the whole page.
+        -->
+        <script type="text/javascript">
+            function resetF(){
+                document.getElementById("user_input").reset();
+                location.reload();
+            }
+        </script>
+    </body>
+</html>

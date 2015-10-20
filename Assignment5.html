@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<!--
+            Andrew Pel
+            andrew_pel@student.uml.edu
+            Student @ UMass Lowell in 91.461 GUI Programming I
+            9/8/2015
+            This webpage is assignment 5 on JSON and text formating.
+            This web page makes a reference to the a5css.css to setup the page's layout
+            I got the information for lyrics and such from here
+            http://www.azlyrics.com/lyrics/shawnmendes/stitches.html
+-->
+<html>
+    <head>
+        <title>Assignment 5</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/a5css.css">
+        
+<!--
+  load jQuery library from the Google Content Delivery Network (CDN)
+  see http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/
+  however, note that you obviously must be online for this to work
+  alternatively, you can download jQuery and store it locally from
+     http://jquery.com/download/
+-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<!-- load the JSON file containing the text of Lincoln's Gettysburg address -->
+<script type="text/javascript">
+  // this function will run after the body has been loaded
+  jQuery(document).ready( function() {
+      jQuery.get("text.json", function( data ){
+          placeContent( data ); // construct ouput from the data read
+      }, "json" ); // be sure to include this third parameter for weblab.cs.uml.edu
+  });
+  </script>
+  
+  <!-- script to place JSON text in the placeholder (div#content) on the page -->
+<script type="text/javascript">
+  // N.B.  This version *does* apply the CSS.
+  function placeContent( story ) {
+    var strContent = "";
+
+    // create dynamic content from JSON
+    strContent += "<h2 class='title'>" + story.title + "</h1>" ;
+    strContent += "<h3 class='author'>by " + story.author + "</h2>" ;
+    strContent += "<h3 class='album'>Album: " + story.album + "</h2>" ;
+    strContent += "<h4 class='date'>" + story.date + "</h4>" ;
+
+    // loop through the first verse
+    strContent += "<div class='verse_1'>" + story.verse_1 + "</div>";
+    for ( var para = 0 ; para < story.song.verse1.length ; para++ ) {
+      strContent += "<span>" ;
+      for ( var sent = 0 ; sent < story.song.verse1[para].length ; sent++ ) {
+        strContent += story.song.verse1[para][sent] + "  " ;
+      }
+      strContent += "</span>" ;
+      strContent += "<br>" ;
+  }
+    // loop through the pre-chorus 
+    // <br> = line break
+    strContent += "<br>" ;
+    strContent += "<div class='prechorus'>" + story.prechorus + "</div>";
+    for ( var para = 0 ; para < story.song.prechorus1.length ; para++ ) {
+      strContent += "<span>" ;
+      for ( var sent = 0 ; sent < story.song.prechorus1[para].length ; sent++ ) {
+        strContent += story.song.prechorus1[para][sent] + "  " ;
+      }
+      strContent += "</span>" ;
+      strContent += "<br>" ;
+  } 
+    // loops through the chorus
+    strContent += "<br>" ;
+    strContent += "<div class='chorus'>" + story.chorus + "</div>";
+    for ( var para = 0 ; para < story.song.chorus1.length ; para++ ) {
+      strContent += "<span>" ;
+      for ( var sent = 0 ; sent < story.song.chorus1[para].length ; sent++ ) {
+        strContent += story.song.chorus1[para][sent] + "  " ;
+      }
+      strContent += "</span>" ;
+      strContent += "<br>" ;
+  } 
+    // loops through the second verse
+    strContent += "<br>" ;
+    strContent += "<div class='verse_2'>" + story.verse_2 + "</div>";
+    for ( var para = 0 ; para < story.song.verse2.length ; para++ ) {
+      strContent += "<span>" ;
+      for ( var sent = 0 ; sent < story.song.verse2[para].length ; sent++ ) {
+        strContent += story.song.verse2[para][sent] + "  " ;
+      }
+      strContent += "</span>" ;
+      strContent += "<br>" ;
+  }
+    // loops through the pre-chorus again
+    strContent += "<br>" ;
+    strContent += "<div class='prechorus'>" + story.prechorus + "</div>";
+    for ( var para = 0 ; para < story.song.prechorus1.length ; para++ ) {
+      strContent += "<span>" ;
+      for ( var sent = 0 ; sent < story.song.prechorus1[para].length ; sent++ ) {
+        strContent += story.song.prechorus1[para][sent] + "  " ;
+      }
+      strContent += "</span>" ;
+      strContent += "<br>" ;
+  } 
+    // loops through the chorus one more time
+    strContent += "<br>" ;
+    strContent += "<div class='chorus'>" + story.chorus + "</div>";
+    for ( var para = 0 ; para < story.song.chorus1.length ; para++ ) {
+      strContent += "<span>" ;
+      for ( var sent = 0 ; sent < story.song.chorus1[para].length ; sent++ ) {
+        strContent += story.song.chorus1[para][sent] + "  " ;
+      }
+      strContent += "</span>" ;
+      strContent += "<br>" ;
+  } 
+    // loops through the bridge
+    strContent += "<br>" ;
+    strContent += "<div class='bridge'>" + story.bridge + "</div>";
+    for ( var para = 0 ; para < story.song.bridge1.length ; para++ ) {
+      strContent += "<span>" ;
+      for ( var sent = 0 ; sent < story.song.bridge1[para].length ; sent++ ) {
+        strContent += story.song.bridge1[para][sent] + "  " ;
+      }
+      strContent += "</span>" ;
+      strContent += "<br>" ;
+  } 
+    // loops through the chorus for one last time
+    strContent += "<br>" ;
+    strContent += "<div class='chorus'>" + story.chorus + "</div>";
+    for ( var para = 0 ; para < story.song.chorus2.length ; para++ ) {
+      strContent += "<span>" ;
+      for ( var sent = 0 ; sent < story.song.chorus2[para].length ; sent++ ) {
+        strContent += story.song.chorus2[para][sent] + "  " ;
+      }
+      strContent += "</span>" ;
+      strContent += "<br>" ;
+  } 
+  
+  // final piece of info for the writters and copyright of the song
+  strContent += "<h5 class= 'writters'>Writter(s): " + story.writters + "</h5>" ;
+  strContent += "<h5 class= 'copyright'>Copyright: " + story.copyright + "</h5>" ;
+  
+    // place dynamic content on page
+    $("#content").html( strContent ) ;
+  }
+</script>
+  
+    </head>
+    <body>
+    <!-- 
+    home link
+    -->
+    <ul>
+        <li><a href="http://weblab.cs.uml.edu/~apel/">Home</a></li>
+    </ul>
+        
+        <!-- 
+        places an image on the webpage
+        The image can be found here http://vignette3.wikia.nocookie.net/lyricwiki/images/c/cb/Shawn_Mendes_-_Handwritten.jpg/revision/latest?cb=20150216164421
+        -->
+        <img id="pic" src="Shawn_Mendes.jpg" alt="Album Picture" />
+        
+        <!-- adding json content to the body of the html file -->
+        <div id="content"></div>
+        
+    </body>
+</html>
