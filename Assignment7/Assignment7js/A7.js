@@ -62,6 +62,10 @@ $(document).ready(function() {
     $.validator.addMethod("greaterThan", function(value, element, param) {
                 return this.optional(element) || parseInt(value) <= parseInt($(param).val());
              }, jQuery.validator.format("This value has to be <= the ending value."));
+             
+    $.validator.addMethod("lessThan", function(value, element, param) {
+                return this.optional(element) || parseInt(value) >= parseInt($(param).val());
+             }, jQuery.validator.format("This value has to be >= the starting value."));
                         
         $("#user_input").validate({
             rules : {
@@ -74,7 +78,8 @@ $(document).ready(function() {
                 eRow : {
                     required: true,
                     digits: true,
-                    max: 200
+                    max: 200,
+                    lessThan: "#sRow"
                 },
                 sCol : {
                     required: true,
@@ -85,7 +90,8 @@ $(document).ready(function() {
                 eCol : {
                     required: true,
                     digits: true,
-                    max: 200
+                    max: 200,
+                    lessThan: "#sCol"
                 }
         }, 
                 messages : {

@@ -58,8 +58,13 @@
             <input type="text" name="eCol" id="eCol" value="10">
             </p>
             <br>
+            <!-- 
+            Added this if statement to the submit button to make sure the form is valid before submitting.
+            -->
             <div>
-                <input type="submit" value="Submit" onclick="makeTable()">
+                <input type="submit" value="Submit" onclick="if($('#user_input').valid())
+                                                                {makeTable();}
+                                                                else{return false;}">
             </div> 
         </form>
         <br>
