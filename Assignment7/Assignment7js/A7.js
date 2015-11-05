@@ -66,14 +66,10 @@ $(document).ready(function() {
                 return this.optional(element) || parseInt(value) <= parseInt($(param).val());
              }, jQuery.validator.format("This value has to be <= the ending value."));
              
-    // Greater than rule to check if the starting value is less than the ending value 
-    $.validator.addMethod("lessThan", function(value, element, param) {
-                return this.optional(element) || parseInt(value) >= parseInt($(param).val());
-             }, jQuery.validator.format("This value has to be >= the starting value."));
         
         // validation rules for the form
         // makes sure each form is required, contains only digits, has a max value of 200, 
-        // and statisfy the greaterThan or lessThan condition.
+        // and statisfy the greaterThan.
         $("#user_input").validate({
             rules : {
                 sRow : {
@@ -85,8 +81,7 @@ $(document).ready(function() {
                 eRow : {
                     required: true,
                     digits: true,
-                    max: 200,
-                    lessThan: "#sRow"
+                    max: 200
                 },
                 sCol : {
                     required: true,
@@ -97,8 +92,7 @@ $(document).ready(function() {
                 eCol : {
                     required: true,
                     digits: true,
-                    max: 200,
-                    lessThan: "#sCol"
+                    max: 200
                 }
         }, 
         // message for rules
