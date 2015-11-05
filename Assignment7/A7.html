@@ -39,7 +39,12 @@
         I labled the form as user_input
         I also set the type of each input so that it only accepts numbers
         -->
-        <form id="user_input" action="javascript:void(0);" method="get">
+            <!-- 
+            Added this if statement to onsubmit to make sure the form is valid before submitting.
+            -->
+        <form id="user_input" action="javascript:void(0);" method="get" onsubmit="if($('#user_input').valid())
+                                                                {makeTable();}
+                                                                else{return false;}">
             <br>
             <p>
             Starting number for horizontal (multiplier): <br>
@@ -58,13 +63,8 @@
             <input type="text" name="eCol" id="eCol" value="10">
             </p>
             <br>
-            <!-- 
-            Added this if statement to the submit button to make sure the form is valid before submitting.
-            -->
             <div>
-                <input type="submit" value="Submit" onclick="if($('#user_input').valid())
-                                                                {makeTable();}
-                                                                else{return false;}">
+                <input type="submit" value="Submit">
             </div> 
         </form>
         <br>
