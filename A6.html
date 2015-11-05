@@ -38,16 +38,16 @@
         <form id="user_input" method="get">
             <br>
             Starting number for horizontal (multiplier): <br>
-            <input type="number" name="sRow" id="sRow">
+            <input type="text" name="sRow" id="sRow">
             <br>
             Ending number for horizontal (multiplier): <br>
-            <input type="number" name="eRow" id="eRow">
+            <input type="text" name="eRow" id="eRow">
             <br>
             Starting number for vertical (multiplicand): <br>
-            <input type="number" name="sCol" id="sCol">
+            <input type="text" name="sCol" id="sCol">
             <br>
             Ending number for vertical (multiplicand): <br>
-            <input type="number" name="eCol" id="eCol">
+            <input type="text" name="eCol" id="eCol">
             <br><br>
         </form>
         
@@ -80,17 +80,23 @@
                        alert("The starting values have to bigger than the ending values!");
                        location.reload();
                    } else 
+                       // Checks if inputted values are numbers and if so 
+                       // puts out an alert and restarts the page
+                       if ( isNaN(rS) || isNaN(rE) || isNaN(cS) || isNaN(cE)){
+                        alert("One of the values is not a number! Please into a number!");
+                        location.reload();
+                   } else 
                        // Checks if inputted values are negative and if so 
                        // puts out an alert and restarts the page
                        if (rS < 0 || rE < 0 || cS < 0 || cE < 0 ){
-                       alert("Please input a positive number!");
-                       location.reload();
+                        alert("Please input a positive number!");
+                        location.reload();
                    } else
                        // Checks if there are no inputted values and if so 
                        // puts out an alert and restarts the page
-                       if (rS === null || rE === null || cS === null || cE === null ){
-                       alert("Please fill in the forms completely");
-                       location.reload();
+                       if (rS === "" || rE === "" || cS === "" || cE === "" ){
+                        alert("Please fill in the forms completely");
+                        location.reload();
                    } else{
                    // if all ifs are false call the makeTable function with the variables
                    makeTable(rS, rE, cS, cE);
