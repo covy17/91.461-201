@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+            Andrew Pel
+            andrew_pel@student.uml.edu
+            Student @ UMass Lowell in 91.461 GUI Programming I
+            11/04/2015
+            This webpage is assignment 8
+            The page contains the form  and table itself
+            It calls A8.js for the javascript function of table creation
+            Also contains the tabs
+-->
+<html>
+    <head>
+        <title>Assignment 8</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../css/A8.css">
+        <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+        
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> <!--Using Google as CDN for jQuery -->
+    
+        <!-- the jQuery Validation Plugin is from http://bassistance.de/jquery-plugins/jquery-plugin-validation/ -->
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js" type="text/javascript"></script>
+        
+        <!-- jQuery UI library 1.11.4 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+        
+        <!-- source for the table creation algorithm -->
+        <script src="Assignment8js/A8.js"></script>
+        
+        
+    </head>
+    
+    <body>
+        
+        <h1 class = "ex">jQuery UI Slider and Tab Widgets</h1>
+        <br>
+        
+        
+        <!--
+        The outer layer of this code is the tabs
+        it has a pre-made tab called home tab that holds the form data.
+        -->
+        <!-- 
+        underneath this is the html code to create a form that takes 4 different information
+        I labled the form as user_input
+        I also set the type of each input so that it only accepts numbers
+        -->
+            <!-- 
+            Added this if statement to onsubmit to make sure the form is valid before submitting.
+            -->
+                
+        <div id="tabs" > 
+        <ul id="ulTabs"> 
+            <li><a href="#homeTab">Home Tab</a></li>
+        </ul>
+            
+            <div id="homeTab"> 
+            <form id="user_input" action="javascript:void(0);" method="get" onsubmit="if($('#user_input').valid())
+                                                                                      {makeTable();}
+                                                                                      else{return false;}">
+            <br>
+            
+            Starting number for horizontal (multiplier): <br>
+            <input type="text" name="sRow" id="sRow" value="10">
+            <br>
+            <br>
+            <div id="slider_sRow"></div>
+            
+            
+            Ending number for horizontal (multiplier): <br>
+            <input type="text" name="eRow" id="eRow" value="10">
+            <br>
+            <br>
+            <div id="slider_eRow"></div>
+            
+            
+            Starting number for vertical (multiplicand): <br>
+            <input type="text" name="sCol" id="sCol" value="10">
+            <br>
+            <br>
+            <div id="slider_sCol"></div>
+            
+            
+            Ending number for vertical (multiplicand): <br>
+            <input type="text" name="eCol" id="eCol" value="10">
+            <br>
+            <br>
+            <div id="slider_eCol"></div>
+            
+            <br>
+            <div>
+                <input type="submit" value="Submit">
+            </div> 
+            </form>
+                <br>
+                <button id="closeAllTabs">Close All Tabs</button>
+            </div>
+        </div>
+               
+    
+    </body>
+</html>

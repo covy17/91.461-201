@@ -65,7 +65,6 @@ $(document).ready(function() {
     $.validator.addMethod("greaterThan", function(value, element, param) {
                 return this.optional(element) || parseInt(value) <= parseInt($(param).val());
              }, jQuery.validator.format("This value has to be <= the ending value."));
-             
         
         // validation rules for the form
         // makes sure each form is required, contains only digits, has a max value of 200, 
