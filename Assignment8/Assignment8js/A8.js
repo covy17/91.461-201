@@ -76,11 +76,7 @@
             // Adding content(table) to the new tabs 
             var newData = "<div id='" + tabNum + "'>" + tMake + "</div>"; 
             $("#tabs").append(newData);
-            
-            // reinitallize tabs
-            tabs.tabs( "refresh" );
-            // make the newly created tab the one that is in focus
-            tabs.tabs({ active: (tCounter - 1) });
+             
             // Got the code from here to close indiviual tabs
             // http://jqueryui.com/tabs/#manipulation
             tabs.delegate( "span.ui-icon-close", "click", function() {
@@ -88,6 +84,11 @@
             $( "#" + panelId ).remove();
             tabs.tabs( "refresh" );
             });
+            
+             // reinitallize tabs
+            tabs.tabs( "refresh" );
+            // make the newly created tab the one that is in focus
+            tabs.tabs({ active: (tCounter - 1) });
             
             // in case the values of the table goes out of bounds
             $('#tabs' + tCounter).css("overflow", "auto");
