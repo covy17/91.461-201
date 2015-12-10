@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+            Andrew Pel
+            andrew_pel@student.uml.edu
+            Student @ UMass Lowell in 91.461 GUI Programming I
+            12/04/2015
+            This webpage is assignment 9
+            The page contains the form  and table itself
+            It calls A9.js for the javascript function of creating the tiles, the rack, and the game board
+            Also calculates the score
+-->
+<html>
+    <head>
+        <title>Scrabble</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="A9css/A9.css">
+        
+        <!--Using Google as CDN for jQuery -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+    
+        <!-- the jQuery Validation Plugin is from http://bassistance.de/jquery-plugins/jquery-plugin-validation/ -->
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/additional-methods.min.js" type="text/javascript"></script>
+        
+        <!-- jQuery UI library 1.11.4 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+        
+        <!-- source for the table creation algorithm -->
+        <script src="A9.js"></script>
+        
+
+    </head>
+    <body>
+        <h1 class = "ex">SCRABBLE</h1>
+        
+        <!-- game board that holds all the slots for the game board itself -->
+        <div id ="gameBoard">
+            <div id="0" class="GBdrop DW">
+            </div><div id="1" class="GBdrop">
+            </div><div id="2" class="GBdrop">
+            </div><div id="3" class="GBdrop">
+            </div><div id="4" class="GBdrop">
+            </div><div id="5" class="GBdrop DL">
+            </div><div id="6" class="GBdrop">
+            </div><div id="7" class="GBdrop">
+            </div><div id="8" class="GBdrop">
+            </div><div id="9" class="GBdrop">
+            </div><div id="10" class="GBdrop">
+            </div>
+            
+        </div>
+        <br><br><br><br><br><br><br><br><br><br>   
+        <!-- a rack holds the tiles -->
+        <div id="rack"></div>
+        
+        <br><br>
+        <label>Current Score:</label>
+        <label id="currentScore"></label>
+        <br>
+        <label>Total Score:</label>
+        <label id="totalScore"></label>
+        <br><br>
+        
+        <button id="submit_word">Submit Word</button>
+        
+        <br><br>
+        <label class="error" id="error"></label>
+        
+        </body>
+</html>
